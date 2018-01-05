@@ -1,0 +1,93 @@
+{% extends 'base/base.html' %}
+{% block title %} Nuevo usuario {% endblock %}
+{% block content %}
+
+<div class="box box-default">
+    <div class="box-header with-border">
+        <i class="fa fa-user-plus fa-fw"></i>
+        <h3 class="box-title"> Por favor, complete el siguiente formulario para crear un nuevo usuario.</h3>
+    </div>
+    <div class="box-body">
+        <form action="#" method="post">
+            {% csrf_token %}
+            <label>Informacion del usuario.</label>
+            <div class="row">
+                <div class="col-lg-6 col-xs-12">
+                    <input name="usuario" type="text" class="form-control" value="{{ user_.user.username }}" autocomplete="off" placeholder="Nombre de usuario" required >
+                    {{ error.usuario }}
+                </div>
+                <div class="col-lg-6 col-xs-12">
+                     <input name="email" type="email" class="form-control" value="{{  user_.user.email }}" autocomplete="off" placeholder="Correo electronico" required >
+                </div>
+            </div>
+            <label>Datos Personales.</label>
+            <div class="row">
+                <div class="col-lg-6 col-xs-12">
+                    <input name="nombre" type="text"  class="form-control" value="{{ user_.user.first_name }}" autocomplete="off"  placeholder="Nombre" required>
+                </div>
+                <div class="col-lg-6 col-xs-12">
+                     <input name="apellidos" type="text" class="form-control" value="{{ user_.user.last_name }}" autocomplete="off"  placeholder="Apellido" required>
+                </div>
+                <div class="col-lg-4 col-xs-12">
+                    <input name="rut" type="text" class="form-control" value="{{ user_.rut }}" autocomplete="off"  placeholder="Rut" required>
+                </div>
+                <div class="col-lg-4 col-xs-12">
+                    <select name="tipo" class="form-control">
+                        {% if user_ %}
+                        <option value="{{ user_.tipo.id }}">{{ user_.tipo }}</option>
+                        {% endif %}
+                        {% for foo in tipo %}
+                        <option value="{{ foo.id }}">{{ foo }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="col-lg-4 col-xs-12">
+                    <select name="estado" class="form-control">
+                        {% if user_ %}
+                        <option value="{{ user_.estado.id }}">{{ user_.estado }}</option>
+                        {% endif %}
+                        {% for foo in estado %}
+                        <option value="{{ foo.id }}">{{ foo }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+            </div>
+            <label>{% if user_ %}Cambiar{% else %}Ingresar{% endif %} contraseña</label>
+            <div class="row">
+                <div class="col-lg-6 col-xs-12">
+                    <input class="form-control" type="password" name="contrasena1" id="password1" {% if user_ %}placeholder="Cambiar contraseña" {% else %} placeholder="Contraseña" required {% endif %}>
+                </div>
+                <div class="col-lg-6 col-xs-12">
+                    <input class="form-control" type="password" name="contrasena2" id="password2"  {% if user_ %}placeholder="Repetir contraseña nueva" {% else %} placeholder="Repetir contraseña" required {% endif %}>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-6 col-xs-12">
+                    *La contraseña requiere como minimo 8 caractes.
+                </div>
+            </div>
+
+            <div align="right">
+                <button type="submit" class="btn btn-primary">Ingresar</button>
+                <button type="reset" class="btn btn-default">Borrar</button>
+            </div>
+        </form>
+    </div>
+</div>
+    <script type="text/javascript">
+var password = document.getElementById("password1")
+  , confirm_password = document.getElementById("password2");
+function validatePassword(){
+   if(password.value.length < 8) {
+      confirm_password.setCustomValidity("La contraseña requiere como minimo 8 caractes.!");
+  } else if(password.value != confirm_password.value) {
+    confirm_password.setCustomValidity("Las contraseñas no coinciden");
+  } else {
+    confirm_password.setCustomValidity('');
+  }
+}
+password.onchange = validatePassword;
+confirm_password.onkeyup = validatePassword;
+</script>
+{% endblock %}

@@ -1,0 +1,81 @@
+{% extends 'base/base.html' %}
+{% block title %} Nuevo usuario {% endblock %}
+{% block content %}
+
+<div class="box box-default">
+    <div class="box-header with-border">
+        <i class="fa fa-user-plus fa-fw"></i>
+        <h3 class="box-title"> Listado de usuarios registrados</h3>
+    </div>
+    <div class="box-body">
+        <div class="list">
+            <div class="row header-list" align="center">
+                <div class="col-lg-2">
+                    Usuario
+                </div>
+                <div class="col-lg-2">
+                    Email
+                </div>
+                <div class="col-lg-2">
+                    Nombre
+                </div>
+                <div class="col-lg-1">
+                    Rut
+                </div>
+                <div class="col-lg-2">
+                    Tipo
+                </div>
+                <div class="col-lg-2">
+                    Estado
+                </div>
+                <div class="col-lg-1">
+                    Opciones
+                </div>
+            </div>
+            {% for foo in usuarios %}
+            <div class="row body-list" align="center">
+                <div class="col-lg-2">
+                    {{ foo.user.username }}
+                </div>
+                <div class="col-lg-2">
+                    {{ foo.user.email }}
+                </div>
+                <div class="col-lg-2">
+                    {{ foo.user.first_name }} {{ foo.user.last_name }}
+                </div>
+                <div class="col-lg-1">
+                    {{ foo.rut }}
+                </div>
+                <div class="col-lg-2">
+                    <p class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
+                        {{ foo.tipo }}
+                        <span class="fa fa-caret-down"></span>
+                    </p>
+                    <ul class="dropdown-menu">
+                        {% for foo in tipo %}
+                        <li><a href="#">{{ foo }}</a></li>
+                        {% endfor %}
+                      </ul>
+                </div>
+                <div class="col-lg-2">
+                    <p class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
+                        {{ foo.estado }}
+                        <span class="fa fa-caret-down"></span>
+                    </p>
+                    <ul class="dropdown-menu">
+                        {% for foo in estado %}
+                        <li><a href="#">{{ foo }}</a></li>
+                        {% endfor %}
+                      </ul>
+                </div>
+                <div class="col-lg-1">
+                    <a href="{% url 'editarusuario' foo.user.id %}" title="Editar">
+                        <span class="fa fa-edit"></span>
+                    </a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}
