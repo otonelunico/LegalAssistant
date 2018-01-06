@@ -178,4 +178,18 @@ class Actividad(models.Model):
     descripcion = models.TextField()
     estado = models.CharField(max_length=50)
 
+    def __str__(self):
+        return '{}'.format(self.nombre_actividad)
+
+
+class Notificacion(models.Model):
+    user = models.ForeignKey(ExtraUser, blank=True, on_delete=models.CASCADE)
+    titulo = models.CharField(max_length=50)
+    descripcion = models.TextField()
+    enlace = models.CharField(max_length=100)
+    fecha_hora = models.DateTimeField()
+
+    def __str__(self):
+        return '{}'.format(self.titulo)
+
 
