@@ -116,6 +116,7 @@ class DocumentoSolicitud(models.Model):
     solicitud = models.ForeignKey(Solicitud, blank=True, on_delete=models.CASCADE)
     nombre = models.CharField(max_length=50)
     estado = models.BooleanField(default=True)
+    docfile = models.FileField(upload_to='documents/%Y/%m/%d')
 
     def __str__(self):
         return '{}'.format(self.solicitud.cliente.nombre + ' ' + self.nombre)
@@ -124,6 +125,7 @@ class DocumentoSolicitud(models.Model):
 class Documentacion(models.Model):
     tema_juridico = models.ForeignKey(TemaJuridico, blank=True, on_delete=models.CASCADE)
     nombre = models.CharField(max_length=50)
+    docfile = models.FileField(upload_to='documents/%Y/%m/%d')
 
     def __str__(self):
         return '{}'.format(self.tema_juridico.nombre_tema + ' ' + self.nombre)

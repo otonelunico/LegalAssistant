@@ -1,0 +1,104 @@
+{% extends 'base/base.html' %}
+{% block title %} Nuevo Cliente {% endblock %}
+{% block content %}
+<div class="box box-default">
+    <div class="box-header with-border">
+        <i class="fa fa-user-plus fa-fw"></i>
+        <h3 class="box-title"> Por favor, complete el siguiente formulario para crear un nuevo cliente.</h3>
+    </div>
+    <div class="box-body">
+        <form action="#" method="post">
+            {% csrf_token %}
+            <label>Informacion del cliente.</label>
+            <div class="row">
+                <div class="col-lg-3 col-xs-12">
+                    <input name="rut" type="text" class="form-control" autocomplete="off" placeholder="11111111-1" required >
+                </div>
+                <div class="col-lg-6 col-xs-12">
+                     <input name="nombre" type="text" class="form-control" autocomplete="off" placeholder="Nombre" required >
+                </div>
+                <div class="col-lg-3 col-xs-12">
+                    <input name="tipo" type="text"  class="form-control" value="" autocomplete="off"  placeholder="Tipo" required>
+                </div>
+                <div class="col-lg-4 col-xs-12">
+                     <input name="direccion" type="text" class="form-control" value="" autocomplete="off"  placeholder="Direccion" required>
+                </div>
+                <div class="col-lg-4 col-xs-12">
+                    <input name="telefono" type="number" class="form-control" value="" autocomplete="off"  placeholder="Telefono" required>
+                </div>
+                <div class="col-lg-4 col-xs-12">
+                    <input name="email" type="email" class="form-control" value="" autocomplete="off"  placeholder="correo@correo.cl" required>
+                </div>
+                <div class="col-lg-6 col-xs-12">
+                    <p>{{ error }}</p>
+                </div>
+                <div class="col-lg-6 col-xs-12" align="right">
+                    <button type="submit" class="btn btn-primary">Ingresar</button>
+                    <button type="reset" class="btn btn-default">Borrar</button>
+                </div>
+            </div>
+
+            <div align="right">
+            </div>
+        </form>
+    </div>
+</div>
+<div class="box box-default">
+    <div class="box-header with-border">
+        <i class="fa fa-user-plus fa-fw"></i>
+        <h3 class="box-title"> Listado de usuarios registrados.</h3>
+    </div>
+    <div class="box-body list">
+            <div class="row header-list" align="center">
+                <div class="col-lg-2">
+                    Rut
+                </div>
+                <div class="col-lg-2">
+                    Nombre
+                </div>
+                <div class="col-lg-1">
+                    Tipo
+                </div>
+                <div class="col-lg-2">
+                    Email
+                </div>
+                <div class="col-lg-1">
+                    Telefono
+                </div>
+                <div class="col-lg-3">
+                    Direccion
+                </div>
+                <div align="left" class="col-lg-1">
+                    Opciones
+                </div>
+            </div>
+            {% for foo in clientes %}
+            <div class="row body-list" align="center">
+                <div class="col-lg-2">
+                    {{ foo.rut }}
+                </div>
+                <div class="col-lg-2">
+                    {{ foo.nombre }}
+                </div>
+                <div class="col-lg-1">
+                    {{ foo.tipo }}
+                </div>
+                <div class="col-lg-2">
+                    {{ foo.email }}
+                </div>
+                <div class="col-lg-1">
+                    {{ foo.telefono }}
+                </div>
+                <div class="col-lg-3">
+                    {{ foo.direccion }}
+                </div>
+                <div class="col-lg-1">
+                    <a href="" title="Editar">
+                        <span class="fa fa-edit"></span>
+                    </a>
+                </div>
+            </div>
+            {% endfor %}
+    </div>
+</div>
+{% endblock %}
