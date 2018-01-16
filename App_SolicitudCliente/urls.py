@@ -1,7 +1,8 @@
 from django.urls import path
-from .views import CrearCliente, CrearSolicitud
+from .views import CrearCliente, CrearSolicitud, CrearSolisitudAgregarDocumentos
 
 urlpatterns = [
     path('nuevo/', CrearCliente.as_view(), name='nuevocliente'),
     path('solicitud/', CrearSolicitud.as_view(), name='nuevasolicitud'),
+    path('solicitud/<int:id>/', CrearSolisitudAgregarDocumentos.as_view(), name='nuevasolicituddocumentos'),
 ]

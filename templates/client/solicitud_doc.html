@@ -1,0 +1,53 @@
+{% extends 'base/base.html' %}
+{% block title %} Nuevo usuario {% endblock %}
+{% block content %}
+
+<div class="box box-default">
+    <div class="box-header with-border">
+        <i class="fa fa-user-plus fa-fw"></i>
+        <h3 class="box-title"> Por favor, Adjuntar documentos para la solicitud.</h3>
+    </div>
+    <div class="box-body">
+        <form action="#" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="row">
+                 <div class="col-lg-6 col-xs-12">
+                    <input type="file" class="form-control" name="docfile1" id="id_docfile1" />
+                </div>
+                 <div class="col-lg-6 col-xs-12">
+                    <input type="file" class="form-control" name="docfile2" id="id_docfile1" />
+                </div>
+                 <div class="col-lg-6 col-xs-12">
+                    <input type="file" class="form-control" name="docfile3" id="id_docfile1" />
+                </div>
+                 <div class="col-lg-6 col-xs-12">
+                    <input type="file" class="form-control" name="docfile4" id="id_docfile1" />
+                </div>
+                 <div class="col-lg-6 col-xs-12">
+                    <input type="file" class="form-control" name="docfile5" id="id_docfile1" />
+                </div>
+                 <div class="col-lg-6 col-xs-12">
+                    <input type="file" class="form-control" name="docfile6" id="id_docfile1" />
+                </div>
+                 <div class="col-lg-6 col-xs-12">
+                    <input type="file" class="form-control" name="docfile7" id="id_docfile1" />
+                </div>
+                 <div class="col-lg-6 col-xs-12">
+                    <input type="file" class="form-control" name="docfile8" id="id_docfile1" />
+                </div>
+                 <div class="col-lg-6 col-xs-12">
+                    <input type="file" class="form-control" name="docfile9" id="id_docfile1" />
+                </div>
+                 <div class="col-lg-6 col-xs-12">
+                    <input type="file" class="form-control" name="docfile0" id="id_docfile1" />
+                </div>
+            </div>
+
+            <div align="right">
+                <button type="submit" class="btn btn-primary">Guardar</button>
+                <button type="reset" class="btn btn-default">Borrar</button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

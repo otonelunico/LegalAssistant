@@ -1,7 +1,7 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views import View
-from .forms import NuevoClienteForm
-from App_Base.models import Cliente
+from .forms import NuevoClienteForm, NuevaSolicitudForm, DocumentacionForm
+from App_Base.models import Cliente, DocumentoSolicitud, TemaJuridico, Solicitud
 
 # Create your views here.
 
@@ -35,4 +35,50 @@ class CrearSolicitud(View):
     template = 'client/solicitud.html'
     def get(self, request):
         clientes = Cliente.objects.all()
+        tema_juridico = TemaJuridico.objects.all()
+        form = NuevaSolicitudForm()
+        print(form)
+        return render(request, self.template, locals())
+
+    def post(self, request, **kwargs):
+        clientes = Cliente.objects.all()
+        tema_juridico = TemaJuridico.objects.all()
+        form = NuevaSolicitudForm(request.POST)
+        if form.is_valid():
+            solicitud = Solicitud.objects.create(
+                tema_juridico_id=form.cleaned_data['tema_juridico'],
+                cliente_id=form.cleaned_data['cliente'],
+                estado='Pendiente',
+                observaciones=request.POST['observaciones'] ,
+                demandado_direccion=form.cleaned_data['demandado_direccion'],
+                demandado_nombre=form.cleaned_data['demandado_nombre'],
+                demandado_rut=form.cleaned_data['demandado_rut'],
+                demandado_telefono=form.cleaned_data['demandado_telefono']
+            )
+            return redirect('nuevasolicituddocumentos', solicitud.id )
+        else:
+            print(form)
+            print(form.is_valid())
+            print(form.errors)
+        return render(request, self.template, locals())
+
+class CrearSolisitudAgregarDocumentos(View):
+    template = 'client/solicitud_doc.html'
+    def get(self, request, **kwargs):
+        form = DocumentacionForm()
+        print(form)
+        return render(request, self.template, locals())
+
+    def post(self, request, **kwargs):
+        form = DocumentacionForm(request.POST, request.FILES)
+        rut = Solicitud.objects.get(id=kwargs['id']).cliente.rut
+        if form.is_valid():
+            for files in request.FILES:
+                if request.FILES[str(files)]:
+                    DocumentoSolicitud.objects.create(
+                        solicitud_id=kwargs['id'],
+                        docfile=request.FILES[str(files)],
+                        rut=rut
+                    )
+
         return render(request, self.template, locals())

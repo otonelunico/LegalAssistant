@@ -1,0 +1,54 @@
+{% extends 'base/base.html' %}{% load staticfiles %}
+{% block title %} Nuevo usuario {% endblock %}
+{% block ccs %}
+
+  <link rel="stylesheet" href="{% static 'bootstrap-daterangepicker/daterangepicker.css' %}">
+  <link rel="stylesheet" href="{% static 'bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css' %}">
+{% endblock ccs %}
+{% block content %}
+
+<div class="box box-default">
+    <div class="box-header with-border">
+        <i class="fa fa-user-plus fa-fw"></i>
+        <h3 class="box-title"> Por favor, llenar formulario de nuevo caso juridico.</h3>
+    </div>
+    <div class="box-body">
+        <form action="#" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="row">
+                 <div class="col-lg-4 col-xs-12">
+                     <label for="id_nombre_caso">Nombre del caso </label>
+                    <input type="text" class="form-control" name="nombre_caso" maxlength="40" required id="id_nombre_caso" />
+                </div>
+                 <div class="col-lg-4 col-xs-12">
+                     <div class="form-group">
+                         <label>Date range:</label>
+
+                         <div class="input-group">
+                             <div class="input-group-addon">
+                             <i class="fa fa-calendar"></i>
+                             </div>
+                             <input type="text" class="form-control pull-right" id="reservation">
+                         </div>
+                        <!-- /.input group -->
+                     </div>
+                 </div>
+            </div>
+
+            <div align="right">
+                <button type="submit" class="btn btn-primary">Guardar</button>
+                <button type="reset" class="btn btn-default">Borrar</button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}
+{% block js %}
+<script src="{% static 'moment/min/moment.min.js' %}"></script>
+<script src="{% static 'bootstrap-daterangepicker/daterangepicker.js' %}"></script>
+<script>
+  $(function () {
+    $('#reservation').daterangepicker()
+  })
+</script>
+{% endblock js %}

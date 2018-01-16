@@ -22,7 +22,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('App_Base.urls')),
     path('usuario/', include('App_Usuario.urls')),
-    path('cliente/', include('App_SolicitudCliente.urls'))
+    path('cliente/', include('App_SolicitudCliente.urls')),
+    path('casojuridico/', include('App_RegistroCausa.urls'))
 ]
 
 urlpatterns += [
