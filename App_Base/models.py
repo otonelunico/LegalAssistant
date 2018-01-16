@@ -1,6 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
-
+import os
 
 # Create your models here.
 
@@ -106,29 +106,39 @@ class Solicitud(models.Model):
     estado = models.CharField(max_length=50)
     observaciones = models.TextField()
     demandante = models.CharField(max_length=100)
-    demandado = models.CharField(max_length=100)
+    demandado_nombre = models.CharField(max_length=100, null=True)
+    demandado_rut = models.CharField(max_length=100, null=True)
+    demandado_telefono = models.CharField(max_length=100, null=True)
+    demandado_direccion = models.CharField(max_length=100, null=True)
 
     def __str__(self):
         return '{}'.format(self.cliente.nombre + ' ' + self.tema_juridico.nombre_tema)
 
 
+def generate_path(instance, filename):
+    return os.path.join("documents", str(instance.rut), filename)
+
+
 class DocumentoSolicitud(models.Model):
     solicitud = models.ForeignKey(Solicitud, blank=True, on_delete=models.CASCADE)
-    nombre = models.CharField(max_length=50)
+    #nombre = models.CharField(max_length=50)
     estado = models.BooleanField(default=True)
-    docfile = models.FileField(upload_to='documents/%Y/%m/%d')
+    rut = models.CharField(max_length=10)
+    docfile = models.FileField(upload_to=generate_path, null=True, blank=True)
 
     def __str__(self):
-        return '{}'.format(self.solicitud.cliente.nombre + ' ' + self.nombre)
+        return '{}'.format(self.solicitud.cliente.nombre + ' ' + self.rut)
 
 
 class Documentacion(models.Model):
+
     tema_juridico = models.ForeignKey(TemaJuridico, blank=True, on_delete=models.CASCADE)
-    nombre = models.CharField(max_length=50)
-    docfile = models.FileField(upload_to='documents/%Y/%m/%d')
+    #nombre = models.CharField(max_length=50)
+    rut = models.CharField(max_length=10)
+    docfile = models.FileField(upload_to=generate_path, null=True, blank=True)
 
     def __str__(self):
-        return '{}'.format(self.tema_juridico.nombre_tema + ' ' + self.nombre)
+        return '{}'.format(self.rut)
 
 
 class CasoJuridico(models.Model):

@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.views import View
-from .forms import NuevoClienteForm
-from App_Base.models import Cliente
+from .forms import NuevoClienteForm, NuevaSolicitud
+from App_Base.models import Cliente, DocumentoSolicitud, TemaJuridico, Solicitud
 
 # Create your views here.
 
@@ -35,4 +35,22 @@ class CrearSolicitud(View):
     template = 'client/solicitud.html'
     def get(self, request):
         clientes = Cliente.objects.all()
+        tema_juridico = TemaJuridico.objects.all()
+        form = NuevaSolicitud()
+        print(form)
+        return render(request, self.template, locals())
+
+    def post(self, request, **kwargs):
+        clientes = Cliente.objects.all()
+        form = NuevaSolicitud(request.POST, request.FILES)
+        if form.is_valid():
+            print(request.POST)
+            doc = Solicitud(
+            )
+            doc.save(form)
+        else:
+            tema_juridico = TemaJuridico.objects.all()
+            print(form)
+            print(form.is_valid())
+            print(form.errors)
         return render(request, self.template, locals())
