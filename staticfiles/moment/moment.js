@@ -860,7 +860,7 @@ function localeMonths (m, format) {
         this._months[(this._months.isFormat || MONTHS_IN_FORMAT).test(format) ? 'format' : 'standalone'][m.month()];
 }
 
-var defaultLocaleMonthsShort = 'Jan_Feb_Mar_Apr_May_Jun_Jul_Aug_Sep_Oct_Nov_Dec'.split('_');
+var defaultLocaleMonthsShort = 'Enero_Febrero_Marzo_Abril_Mayo_Junio_Julio_Agosto_Septiembre_Octubre_Noviembre_Diciembre'.split('_');
 function localeMonthsShort (m, format) {
     if (!m) {
         return isArray(this._monthsShort) ? this._monthsShort :
