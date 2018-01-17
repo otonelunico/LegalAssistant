@@ -850,7 +850,7 @@ addParseToken(['MMM', 'MMMM'], function (input, array, config, token) {
 // LOCALES
 
 var MONTHS_IN_FORMAT = /D[oD]?(\[[^\[\]]*\]|\s)+MMMM?/;
-var defaultLocaleMonths = 'January_February_March_April_May_June_July_August_September_October_November_December'.split('_');
+var defaultLocaleMonths = 'Enero_Febrero_Marzo_Abril_Mayo_Junio_Julio_Agosto_Septiembre_Octubre_Novienbre_Diciembre'.split('_');
 function localeMonths (m, format) {
     if (!m) {
         return isArray(this._months) ? this._months :
@@ -1360,7 +1360,7 @@ function parseIsoWeekday(input, locale) {
 
 // LOCALES
 
-var defaultLocaleWeekdays = 'Sunday_Monday_Tuesday_Wednesday_Thursday_Friday_Saturday'.split('_');
+var defaultLocaleWeekdays = 'Domingo_Monday_Tuesday_Wednesday_Thursday_Friday_Saturday'.split('_');
 function localeWeekdays (m, format) {
     if (!m) {
         return isArray(this._weekdays) ? this._weekdays :
@@ -1370,7 +1370,7 @@ function localeWeekdays (m, format) {
         this._weekdays[this._weekdays.isFormat.test(format) ? 'format' : 'standalone'][m.day()];
 }
 
-var defaultLocaleWeekdaysShort = 'Sun_Mon_Tue_Wed_Thu_Fri_Sat'.split('_');
+var defaultLocaleWeekdaysShort = 'Domingo_Lunes_Martes_Miercoles_Jueves_Viernes_Sabado'.split('_');
 function localeWeekdaysShort (m) {
     return (m) ? this._weekdaysShort[m.day()] : this._weekdaysShort;
 }
