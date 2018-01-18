@@ -53,12 +53,16 @@ class Gastos_User(models.Model):
 
 
 class Reunion(models.Model):
-    fecha_reunion = models.DateTimeField(auto_now_add=True, unique= True)
+    fecha_inicio = models.CharField(max_length=40, default=False)
+    fecha_final = models.CharField(max_length=40, default=False)
+    todo_Dia = models.BooleanField(default=False)
+    color = models.CharField(max_length=6, default='ffffff')
     tema_reunion = models.CharField(max_length=30)
-    descripcion = models.TextField(null=False, blank=True)
+    observacion = models.TextField(null=False, blank=True)
+    url = models.CharField(max_length=200, default=False)
 
     def __str__(self):
-        return '{}'.format(self.fecha_reunion + ' ' + self.tema_reunion)
+        return '{}'.format(self.tema_reunion + ' ' + str(self.fecha_inicio)+ ' ' + str(self.fecha_final))
 
 
 class UserReunion(models.Model):

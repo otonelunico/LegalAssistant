@@ -38,10 +38,3 @@ class Home(View):
     def get(self, request):
         return render(request, self.template, locals())
 
-
-class CalendarioView(View):
-    template = 'calendario.html'
-
-    def get(self, request):
-        return render(request, self.template, locals())
-

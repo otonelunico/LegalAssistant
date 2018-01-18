@@ -4,19 +4,74 @@
   <link rel="stylesheet" href="{% static 'fullcalendar/dist/fullcalendar.min.css' %}">
   <link rel="stylesheet" href="{% static 'fullcalendar/dist/fullcalendar.print.min.css' %}" media="print">
 
+
+  <link rel="stylesheet" href="{% static 'bootstrap-daterangepicker/daterangepicker.css' %}">
+  <link rel="stylesheet" href="{% static 'bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css' %}">
 {% endblock ccs %}
 {% block content %}
       <div class="row">
         <!-- /.col -->
-        <div class="col-md-8">
+          <div class="col-md-12">
           <div class="box box-primary">
             <div class="box-header with-border">
                 <i class="fa fa-user-plus fa-fw"></i>
                 <h3 class="box-title"> Por favor, llenar formulario de nuevo caso juridico.</h3>
             </div>
             <div class="box-body no-padding">
-              <!-- THE CALENDAR -->
-              <div id="calendar"></div>
+              <div class="row">
+                  <div class="col-md-8">
+                    <div id="calendar"></div>
+                  </div>
+                  <div class="col-md-4" style="background-color: #bababa; width: 31%">
+                <form action="" method="post">
+                  {% csrf_token %}
+                    <div class="col-lg-12">
+                        <div class="form-group">
+                        <label>Date and time range:</label>
+
+                        <div class="input-group">
+                          <div class="input-group-addon">
+                            <i class="fa fa-clock-o"></i>
+                          </div>
+                          <input name="fechas" type="text" class="form-control pull-right" id="fechas">
+                        </div>
+                        <!-- /.input group -->
+                      </div>
+                    </div>
+                    <div class="col-lg-12">
+                        <label for="id_tema_reunion">Tema reunion:</label>
+                        <input class="form-control" type="text" onkeyup="add_color(false)" name="tema_reunion" maxlength="30" required id="id_tema_reunion" />
+                    </div>
+                    <div class="col-lg-12">
+                        <label for="id_color">Color:</label>
+                        <ul class="fc-color-picker" id="color-chooser">
+                          <li><a class="text-aqua" href="" onclick="add_color('00c0ef')"><i class="fa fa-square"></i></a></li>
+                          <li><a class="text-blue" href="#" onclick="add_color('0073b7')"><i class="fa fa-square"></i></a></li>
+                          <li><a class="text-light-blue" href="#"><i class="fa fa-square"></i></a></li>
+                          <li><a class="text-teal" href="#"><i class="fa fa-square"></i></a></li>
+                          <li><a class="text-yellow" href="#"><i class="fa fa-square"></i></a></li>
+                          <li><a class="text-red" href="#"><i class="fa fa-square"></i></a></li>
+                          <li><a class="text-purple" href="#"><i class="fa fa-square"></i></a></li>
+                          <li><a class="text-fuchsia" href="#"><i class="fa fa-square"></i></a></li>
+                          <li><a class="text-muted" href="#" onclick="add_color('777777')"><i class="fa fa-square"></i></a></li>
+                          <li><a class="text-navy" href="#"><i class="fa fa-square"></i></a></li>
+                        </ul>
+                    </div>
+                    <input hidden name="color" id="id_color">
+                    <div class="col-lg-6">
+                        <label for="">Vista Previa</label>
+                        <div id="demo" style="border-radius: 5px 5px 5px 5px; -moz-border-radius: 5px 5px 5px 5px; -webkit-border-radius: 5px 5px 5px 5px; background-color: #777777; color: white; font-size: smaller; margin-bottom: 10px; padding: 1px; padding-left: 5px;">
+                            Vista Previa
+                        </div>
+                    </div>
+                    <div class="col-lg-6" align="center">
+                        <input class="btn btn-default" type="submit" value="Agregar" style="margin-top: 40px">
+                    </div>
+              </form>
+
+
+                  </div>
+              </div>
             </div>
             <!-- /.box-body -->
           </div>
@@ -61,10 +116,12 @@
     /* initialize the calendar
      -----------------------------------------------------------------*/
     //Date for the calendar events (dummy data)
-    var date = new Date()
-    var d    = date.getDate(),
-        m    = date.getMonth(),
-        y    = date.getFullYear()
+
+
+      {% for foo in calendario %}
+
+        console.log('{{ ll.fecha_inicio }}')
+      {% endfor %}
     $('#calendar').fullCalendar({
       header    : {
         left  : 'prev,next today',
@@ -78,20 +135,30 @@
         day  : 'Dia'
       },
       //Random default events
+
       events    : [
+          {% for ll in calendario %}
         {
-          title          : 'Evento todo el dia',
-          start          : new Date(y, m, 1),
-          backgroundColor: '#f56954', //red
-          borderColor    : '#f56954' //red
+          title          : '{{ ll.tema_reunion }}',
+          start          : new Date(
+              '{{ ll.fecha_inicio.ano }}',
+              '{{ ll.fecha_inicio.mes }}',
+              '{{ ll.fecha_inicio.dia }}',
+              '{{ ll.fecha_inicio.hora }}',
+              '{{ ll.fecha_inicio.minuto }}'
+          ),
+          end            : new Date(
+              '{{ ll.fecha_final.ano }}',
+              '{{ ll.fecha_final.mes }}',
+              '{{ ll.fecha_final.dia }}',
+              '{{ ll.fecha_final.hora }}',
+              '{{ ll.fecha_final.minuto }}'
+          ),
+          backgroundColor: '#{{ ll.color }}', //yellow
+          borderColor    : '#{{ ll.color }}' //yellow
         },
-        {
-          title          : 'Long Event',
-          start          : new Date(y, m, d - 5),
-          end            : new Date(y, m, d - 2),
-          backgroundColor: '#f39c12', //yellow
-          borderColor    : '#f39c12' //yellow
-        },
+          {% endfor %}
+         /*,
         {
           title          : 'Meeting',
           start          : new Date(y, m, d, 10, 30),
@@ -111,7 +178,7 @@
           title          : 'Birthday Party',
           start          : new Date(y, m, d + 1, 19, 0),
           end            : new Date(y, m, d + 1, 22, 30),
-          allDay         : false,
+          allDay         : true,
           backgroundColor: '#00a65a', //Success (green)
           borderColor    : '#00a65a' //Success (green)
         },
@@ -122,7 +189,7 @@
           url            : 'http://google.com/',
           backgroundColor: '#3c8dbc', //Primary (light-blue)
           borderColor    : '#3c8dbc' //Primary (light-blue)
-        }
+        }*/
       ],
       editable  : true,
       droppable : true, // this allows things to be dropped onto the calendar !!!
@@ -189,5 +256,33 @@
       $('#new-event').val('')
     })
   })
+</script>
+<script src="{% static 'moment/min/moment.min.js' %}"></script>
+<script src="{% static 'bootstrap-daterangepicker/daterangepicker.js' %}"></script>
+    <script src="{% static 'bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js' %}"></script>
+<script>
+$(function() {
+    $('input[name="fechas"]').daterangepicker({
+        timePicker: true,
+        timePickerIncrement: 5,
+
+        "timePicker24Hour": true,
+        locale: {
+            format: 'MM/DD/YYYY h:mm A'
+        }
+    });
+});
+function add_color(color) {
+    if (color) {
+        document.getElementById("id_color").value = color;
+        obj = document.getElementById('demo');
+        obj.style.backgroundColor = '#' + color;
+        console.log(document.getElementById("id_tema_reunion").value);
+        if (!document.getElementById("id_tema_reunion").value){
+            document.getElementById('demo').innerHTML = "Vista Previa"
+        }
+    }
+    document.getElementById('demo').innerHTML = document.getElementById("id_tema_reunion").value;
+}
 </script>
 {% endblock js %}
