@@ -61,7 +61,7 @@
               <entry file="file://$PROJECT_DIR$/App_Base/models.py">
                 <provider selected="true" editor-type-id="text-editor">
                   <state relative-caret-position="323">
-                    <caret line="61" column="57" lean-forward="true" selection-start-line="55" selection-start-column="4" selection-end-line="61" selection-end-column="57" />
+                    <caret line="61" column="57" lean-forward="false" selection-start-line="55" selection-start-column="4" selection-end-line="61" selection-end-column="57" />
                     <folding>
                       <element signature="e#0#28#0" expanded="true" />
                     </folding>
@@ -101,7 +101,7 @@
         <entry file="file://$PROJECT_DIR$/App_Base/admin.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="51">
-              <caret line="3" column="55" lean-forward="true" selection-start-line="3" selection-start-column="55" selection-end-line="3" selection-end-column="55" />
+              <caret line="3" column="55" lean-forward="false" selection-start-line="3" selection-start-column="55" selection-end-line="3" selection-end-column="55" />
               <folding>
                 <element signature="e#0#32#0" expanded="true" />
               </folding>
@@ -112,14 +112,13 @@
       <file leaf-file-name="calendario.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/templates/calendario/calendario.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="68">
-              <caret line="40" column="43" lean-forward="true" selection-start-line="40" selection-start-column="43" selection-end-line="40" selection-end-column="43" />
+            <state relative-caret-position="204">
+              <caret line="57" column="50" lean-forward="false" selection-start-line="57" selection-start-column="50" selection-end-line="57" selection-end-column="50" />
               <folding>
-                <element signature="e#1099#1144#0#HTML" expanded="true" />
-                <element signature="e#1248#1818#0#HTML" expanded="false" />
-                <element signature="e#3643#3874#0#HTML" expanded="true" />
-                <element signature="e#4118#4142#0#HTML" expanded="true" />
-                <element signature="e#4624#10480#0#HTML" expanded="false" />
+                <element signature="e#1231#1811#0#HTML" expanded="false" />
+                <element signature="e#3765#3996#0#HTML" expanded="true" />
+                <element signature="e#4250#4274#0#HTML" expanded="true" />
+                <element signature="e#4756#10612#0#HTML" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -128,8 +127,8 @@
       <file leaf-file-name="estilos.css" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/staticfiles/dist/css/estilos.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="272">
-              <caret line="16" column="22" lean-forward="true" selection-start-line="16" selection-start-column="22" selection-end-line="16" selection-end-column="22" />
+            <state relative-caret-position="258">
+              <caret line="29" column="0" lean-forward="true" selection-start-line="29" selection-start-column="0" selection-end-line="29" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -197,6 +196,7 @@
       <find>all-</find>
       <find>Jan_</find>
       <find>models</find>
+      <find>10px</find>
     </findStrings>
     <replaceStrings>
       <replace>js' %}</replace>
@@ -230,6 +230,7 @@
         <option value="$PROJECT_DIR$/App_Base/models.py" />
         <option value="$PROJECT_DIR$/App_Calendario/forms.py" />
         <option value="$PROJECT_DIR$/App_Calendario/views.py" />
+        <option value="$PROJECT_DIR$/staticfiles/dist/css/estilos.css" />
         <option value="$PROJECT_DIR$/templates/calendario/calendario.html" />
       </list>
     </option>
@@ -410,10 +411,10 @@
     <layout>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32899022" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32899022" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32899022" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32899022" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2526636" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32952815" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -511,11 +512,10 @@
         <state relative-caret-position="1802">
           <caret line="106" column="51" lean-forward="true" selection-start-line="106" selection-start-column="51" selection-end-line="106" selection-end-column="51" />
           <folding>
-            <element signature="e#1099#1144#0#HTML" expanded="true" />
-            <element signature="e#1248#1818#0#HTML" expanded="false" />
-            <element signature="e#3643#3874#0#HTML" expanded="true" />
-            <element signature="e#4118#4142#0#HTML" expanded="true" />
-            <element signature="e#4624#10480#0#HTML" expanded="false" />
+            <element signature="e#1231#1811#0#HTML" expanded="false" />
+            <element signature="e#3765#3996#0#HTML" expanded="true" />
+            <element signature="e#4250#4274#0#HTML" expanded="true" />
+            <element signature="e#4756#10612#0#HTML" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -664,7 +664,7 @@
     <entry file="file://$PROJECT_DIR$/App_Base/models.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="323">
-          <caret line="61" column="57" lean-forward="true" selection-start-line="55" selection-start-column="4" selection-end-line="61" selection-end-column="57" />
+          <caret line="61" column="57" lean-forward="false" selection-start-line="55" selection-start-column="4" selection-end-line="61" selection-end-column="57" />
           <folding>
             <element signature="e#0#28#0" expanded="true" />
           </folding>
@@ -702,7 +702,7 @@
     <entry file="file://$PROJECT_DIR$/App_Base/admin.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="51">
-          <caret line="3" column="55" lean-forward="true" selection-start-line="3" selection-start-column="55" selection-end-line="3" selection-end-column="55" />
+          <caret line="3" column="55" lean-forward="false" selection-start-line="3" selection-start-column="55" selection-end-line="3" selection-end-column="55" />
           <folding>
             <element signature="e#0#32#0" expanded="true" />
           </folding>
@@ -720,14 +720,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-350">
           <caret line="41" column="13" lean-forward="false" selection-start-line="41" selection-start-column="12" selection-end-line="41" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/staticfiles/dist/css/estilos.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="16" column="22" lean-forward="true" selection-start-line="16" selection-start-column="22" selection-end-line="16" selection-end-column="22" />
           <folding />
         </state>
       </provider>
@@ -750,16 +742,23 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/staticfiles/dist/css/estilos.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="258">
+          <caret line="29" column="0" lean-forward="true" selection-start-line="29" selection-start-column="0" selection-end-line="29" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/templates/calendario/calendario.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="40" column="43" lean-forward="true" selection-start-line="40" selection-start-column="43" selection-end-line="40" selection-end-column="43" />
+        <state relative-caret-position="204">
+          <caret line="57" column="50" lean-forward="false" selection-start-line="57" selection-start-column="50" selection-end-line="57" selection-end-column="50" />
           <folding>
-            <element signature="e#1099#1144#0#HTML" expanded="true" />
-            <element signature="e#1248#1818#0#HTML" expanded="false" />
-            <element signature="e#3643#3874#0#HTML" expanded="true" />
-            <element signature="e#4118#4142#0#HTML" expanded="true" />
-            <element signature="e#4624#10480#0#HTML" expanded="false" />
+            <element signature="e#1231#1811#0#HTML" expanded="false" />
+            <element signature="e#3765#3996#0#HTML" expanded="true" />
+            <element signature="e#4250#4274#0#HTML" expanded="true" />
+            <element signature="e#4756#10612#0#HTML" expanded="false" />
           </folding>
         </state>
       </provider>

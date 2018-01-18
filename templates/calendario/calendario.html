@@ -19,13 +19,13 @@
             </div>
             <div class="box-body no-padding">
               <div class="row">
-                  <div class="col-md-8">
+                  <div class="col-md-8 col-xs-12">
                     <div id="calendar"></div>
                   </div>
-                  <div class="col-md-4" style="background-color: #bababa; width: 31%">
+                  <div class="col-md-4 col-xs-12" style="">
                 <form action="" method="post">
                   {% csrf_token %}
-                    <div class="col-lg-12">
+                    <div class="col-lg-12 col-xs-12">
                         <div class="form-group">
                         <label>Date and time range:</label>
 
@@ -38,11 +38,11 @@
                         <!-- /.input group -->
                       </div>
                     </div>
-                    <div class="col-lg-12">
+                    <div class="col-lg-12 col-xs-12">
                         <label for="id_tema_reunion">Tema reunion:</label>
                         <input class="form-control" type="text" onkeyup="add_color(false)" name="tema_reunion" maxlength="30" required id="id_tema_reunion" />
                     </div>
-                    <div class="col-lg-12">
+                    <div class="col-lg-12 col-xs-12">
                         <label for="id_color">Color:</label>
                         <ul class="fc-color-picker" id="color-chooser">
                           <li><a class="text-aqua" href="" onclick="add_color('00c0ef')"><i class="fa fa-square"></i></a></li>
@@ -55,16 +55,17 @@
                           <li><a class="text-fuchsia" href="#"><i class="fa fa-square"></i></a></li>
                           <li><a class="text-muted" href="#" onclick="add_color('777777')"><i class="fa fa-square"></i></a></li>
                           <li><a class="text-navy" href="#"><i class="fa fa-square"></i></a></li>
+                          <li><a class="text-black" href="#"><i class="fa fa-square"></i></a></li>
                         </ul>
                     </div>
                     <input hidden name="color" id="id_color">
-                    <div class="col-lg-6">
+                    <div class="col-lg-6 col-xs-12">
                         <label for="">Vista Previa</label>
                         <div id="demo" style="border-radius: 5px 5px 5px 5px; -moz-border-radius: 5px 5px 5px 5px; -webkit-border-radius: 5px 5px 5px 5px; background-color: #777777; color: white; font-size: smaller; margin-bottom: 10px; padding: 1px; padding-left: 5px;">
                             Vista Previa
                         </div>
                     </div>
-                    <div class="col-lg-6" align="center">
+                    <div class="col-lg-6 col-xs-12" align="center">
                         <input class="btn btn-default" type="submit" value="Agregar" style="margin-top: 40px">
                     </div>
               </form>
