@@ -16,9 +16,10 @@ Including another URLconf
 
 from django.urls import path
 from .views import Home, Login, Logout
+from django.contrib.auth.decorators import login_required
 
 urlpatterns = [
-    path('', Home.as_view(),  name='home'),
+    path('', login_required(Home.as_view()),  name='home'),
     path('login/', Login.as_view(),  name='login'),
-    path('logout/', Logout.as_view(),  name='logout')
+    path('logout/', login_required(Logout.as_view()),  name='logout')
 ]
