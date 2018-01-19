@@ -1,11 +1,23 @@
-{% extends 'base/base.html' %}
+{% extends 'base/base.html' %}{% load staticfiles %}
 {% block title %} Nuevo usuario {% endblock %}
+{% block ccs %}
+
+  <link rel="stylesheet" href="{% static 'select2/dist/css/select2.min.css' %}">
+{% endblock ccs %}
 {% block content %}
 
 <div class="box box-default">
     <div class="box-header with-border">
-        <i class="fa fa-user-plus fa-fw"></i>
-        <h3 class="box-title"> Listado de usuarios registrados</h3>
+        <div class="col-lg-6">
+            <i class="fa fa-user-plus fa-fw"></i>
+            <h3 class="box-title"> Listado de casos juridicos</h3>
+        </div>
+        <div class="col-lg-6" align="right">
+            <a href="" data-toggle="modal" data-target="#modal-default">
+                <h3 class="box-title"> Agregar caso juridico</h3>
+                <i class="fa fa-user-plus fa-fw"></i>
+            </a>
+        </div>
     </div>
     <div class="box-body">
         <div class="list">
@@ -60,4 +72,50 @@
         </div>
     </div>
 </div>
+<div class="modal fade" id="modal-default" style="display: none;">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">×</span></button>
+                <h4 class="modal-title">Seleccione solicitud</h4>
+              </div>
+              <div class="modal-body">
+                  <select name="solicitud" id="select_solicitudes" class="form-control" style="width: 100%;">
+                  {% for foo in solicitudes %}
+                      <option value="{{ foo.id }}" {% if foo.estado == "terminado" %}disabled{% endif %}>{{ foo.cliente.nombre }} -
+                          {{ foo.cliente.rut }} -
+                          {{ foo.tema_juridico.nombre_tema }} <>
+                          {{ foo.demandado_nombre }} -
+                          {{ foo.demandado_rut }}
+                      </option>
+                  {% endfor %}
+                  </select>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Cancelar</button>
+                <a href="" onclick="filter()" type="button" class="btn btn-primary">Continuar</a>
+              </div>
+            </div>
+            <!-- /.modal-content -->
+          </div>
+          <!-- /.modal-dialog -->
+        </div>
 {% endblock %}
+{% block js %}
+<script src="{% static 'select2/dist/js/select2.full.min.js' %}"></script>
+    <script type="application/javascript">
+
+    $(document).ready(function() {
+        $('#select_solicitudes').select2();
+    });
+
+    function filter() {
+
+    var select = document.getElementById('solicitud').val();
+        //window.location.href = "/"+select;
+        alert(select)
+    }
+    </script>
+
+{% endblock js %}

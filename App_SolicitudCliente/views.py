@@ -31,6 +31,15 @@ class CrearCliente(View):
         print(form)
         return render(request, self.template, locals())
 
+
+class ListaCliente(View):
+    template = 'client/listadocliente.html'
+
+    def get(self, request):
+        clientes = Cliente.objects.all()
+        return render(request, self.template, locals())
+
+
 class CrearSolicitud(View):
     template = 'client/solicitud.html'
     def get(self, request):
@@ -80,5 +89,13 @@ class CrearSolisitudAgregarDocumentos(View):
                         docfile=request.FILES[str(files)],
                         rut=rut
                     )
+            return redirect('listadolicitudes')
+        return render(request, self.template, locals())
+
+class ListarSolicitudes(View):
+    template = 'client/listadosolicitudes.html'
+
+    def get(self, request):
+        solicitudes = Solicitud.objects.all()
 
         return render(request, self.template, locals())

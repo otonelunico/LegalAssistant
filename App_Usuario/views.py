@@ -105,3 +105,13 @@ class EditarUsuario(View):
             print(form.is_valid())
             print(form.errors)
         return render(request, self.template, locals())
+
+class Cambio(View):
+    def get(self, **kwargs):
+        user = ExtraUser.objects.get(user_id=kwargs['id'])
+        if kwargs['cambio']=='estado':
+            user.estado_id = kwargs['select']
+        if kwargs['cambio']=='tipo':
+            user.tipo_id = kwargs['select']
+        user.save()
+        return redirect('listausuario')

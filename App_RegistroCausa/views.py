@@ -40,6 +40,7 @@ class ListadoDeCasos(View):
     template = 'casojuridico/listadodecasos.html'
     def get(self, request):
         casos = CasoJuridico.objects.all()
+        solicitudes = Solicitud.objects.all()
         return render(request, self.template, locals())
 
 

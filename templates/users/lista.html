@@ -52,8 +52,8 @@
                         <span class="fa fa-caret-down"></span>
                     </p>
                     <ul class="dropdown-menu">
-                        {% for foo in tipo %}
-                        <li><a href="#">{{ foo }}</a></li>
+                        {% for tip in tipo %}
+                        <li><a href="{% url 'cambiouser' cambio='tipo' id=foo.user.id select=tip.id %}">{{ tip }}</a></li>
                         {% endfor %}
                       </ul>
                 </div>
@@ -63,8 +63,8 @@
                         <span class="fa fa-caret-down"></span>
                     </p>
                     <ul class="dropdown-menu">
-                        {% for foo in estado %}
-                        <li><a href="#">{{ foo }}</a></li>
+                        {% for est in estado %}
+                        <li><a href="{% url 'cambiouser' cambio='estado' id=foo.user.id select=est.id %}">{{ est }}</a></li>
                         {% endfor %}
                       </ul>
                 </div>

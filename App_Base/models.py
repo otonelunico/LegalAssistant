@@ -59,6 +59,7 @@ class Reunion(models.Model):
     color = models.CharField(max_length=6, default='ffffff')
     tema_reunion = models.CharField(max_length=30)
     observacion = models.TextField(null=False, blank=True)
+    caso_juridico = models.IntegerField(default=0)
     url = models.CharField(max_length=200, default=False)
 
     def __str__(self):

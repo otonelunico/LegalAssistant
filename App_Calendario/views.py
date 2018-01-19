@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 
 # Create your views here.
 from django.views import View
-from App_Base.models import Reunion
+from App_Base.models import Reunion, CasoJuridico
 from .forms import ReunionForm
 import datetime
 
@@ -41,11 +41,22 @@ class CalendarioView(View):
         form = ReunionForm(request.POST)
         if form.is_valid():
             print(form.cleaned_data['fechas'])
-            Reunion.objects.create(fecha_inicio=form.cleaned_data['fechas'].split(' - ')[0],
+            reunion = Reunion.objects.create(fecha_inicio=form.cleaned_data['fechas'].split(' - ')[0],
                     fecha_final=form.cleaned_data['fechas'].split(' - ')[1],
                     color=form.cleaned_data['color'],
                     tema_reunion=form.cleaned_data['tema_reunion'],
-                    url=form.cleaned_data['url']
+                    url=""
                     )
+            reunion.url = reunion.id
+            reunion.save()
         return redirect('calendario')
 
+class DetalleReunionView(View):
+    template = 'calendario/detallereunion.html'
+
+    def get(self, request, **kwargs):
+        reunion = Reunion.objects.get(id=kwargs['id'])
+        if reunion.caso_juridico > 0:
+            caso = CasoJuridico.objects.get(id=reunion.caso_juridico)
+
+        return render(request, self.template, locals())

@@ -1,0 +1,65 @@
+{% extends 'base/base.html' %}
+{% block title %} Nuevo usuario {% endblock %}
+{% block content %}
+
+<div class="box box-default">
+    <div class="box-header with-border">
+        <div class="col-lg-6">
+            <i class="fa fa-file-text fa-fw"></i>
+            <h3 class="box-title"> Listado solicitudes</h3>
+        </div>
+        <div class="col-lg-6" align="right">
+            <a href="{% url 'nuevasolicitud' %}">
+                <h3 class="box-title"> Crear solicitud</h3>
+                <i class="fa fa-plus fa-fw"></i>
+            </a>
+        </div>
+    </div>
+    <div class="box-body">
+        <div class="list">
+            <div class="row header-list" align="center">
+                <div class="col-lg-2">
+                    Cliente
+                </div>
+                <div class="col-lg-1">
+                    Estado
+                </div>
+                <div class="col-lg-2">
+                    Tema Juridico
+                </div>
+                <div class="col-lg-2">
+                    Fecha solicitud
+                </div>
+                <div class="col-lg-2">
+                    Demandado
+                </div>
+                <div class="col-lg-2">
+                    Observaciones
+                </div>
+            </div>
+            {% for foo in solicitudes %}
+            <div class="row body-list modal-down" align="center">
+                <div class="col-lg-2">
+                    <b>{{ foo.cliente.rut }} </b><br>{{ foo.cliente.nombre }}
+                </div>
+                <div class="col-lg-1">
+                    {{ foo.estado }}
+                </div>
+                <div class="col-lg-2">
+                    <b>{{ foo.tema_juridico.nombre_tema }}</b>
+                </div>
+                <div class="col-lg-2">
+                    {{ foo.fecha_creacion|date:'d - F - Y' }}
+                </div>
+                <div class="col-lg-2">
+                    <b>{{ foo.demandado_rut }}</b> <br> {{ foo.demandado_nombre }}
+                </div>
+                <div class="col-lg-2" title="{{ foo.observaciones }}">
+                    {{ foo.observaciones|truncatechars:'20' }}
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}
