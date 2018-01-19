@@ -2,6 +2,8 @@ from django.shortcuts import render, redirect
 
 # Create your views here.
 from django.views import View
+from django.db.models import Q
+
 from App_Base.models import Reunion, CasoJuridico
 from .forms import ReunionForm
 import datetime
@@ -27,25 +29,31 @@ class CalendarioView(View):
     template = 'calendario/calendario.html'
 
     def get(self, request):
-        calendario = Reunion.objects.all()
+        calendario = Reunion.objects.filter(user_id=request.user.id, estado=True)
+        casos = CasoJuridico.objects.filter(~Q(estado='Terminado'))
         form = ReunionForm()
         for ll in calendario:
             ll.fecha_inicio = ParceFecha(ll.fecha_inicio)
             ll.fecha_final = ParceFecha(ll.fecha_final)
-            print(ll.fecha_inicio)
-            print(ll.fecha_final)
 
         return render(request, self.template, locals())
 
     def post(self, request):
         form = ReunionForm(request.POST)
         if form.is_valid():
-            print(form.cleaned_data['fechas'])
-            reunion = Reunion.objects.create(fecha_inicio=form.cleaned_data['fechas'].split(' - ')[0],
+            if str(form.cleaned_data['color'])=="":
+                color = '3a87ad'
+            else:
+                color = form.cleaned_data['color']
+            reunion = Reunion.objects.create(
+                    user_id=request.user.id,
+                    fecha_inicio=form.cleaned_data['fechas'].split(' - ')[0],
                     fecha_final=form.cleaned_data['fechas'].split(' - ')[1],
-                    color=form.cleaned_data['color'],
+                    color=color,
                     tema_reunion=form.cleaned_data['tema_reunion'],
-                    url=""
+                    observacion=form.cleaned_data['observacion'],
+                    url="",
+                    caso_juridico=form.cleaned_data['caso_juridico']
                     )
             reunion.url = reunion.id
             reunion.save()
@@ -56,7 +64,31 @@ class DetalleReunionView(View):
 
     def get(self, request, **kwargs):
         reunion = Reunion.objects.get(id=kwargs['id'])
+        casos = CasoJuridico.objects.filter(~Q(estado='Terminado'))
         if reunion.caso_juridico > 0:
             caso = CasoJuridico.objects.get(id=reunion.caso_juridico)
 
         return render(request, self.template, locals())
+
+    def post(self, request, **kwargs):
+        reunion = Reunion.objects.get(id=kwargs['id'])
+        form = ReunionForm(request.POST)
+        if form.is_valid():
+            print(form.cleaned_data['color'])
+            if str(form.cleaned_data['color'])=="":
+                color = '3a87ad'
+            else:
+                color = form.cleaned_data['color']
+            reunion = Reunion(
+                    id=reunion.id,
+                    user_id=request.user.id,
+                    fecha_inicio=form.cleaned_data['fechas'].split(' - ')[0],
+                    fecha_final=form.cleaned_data['fechas'].split(' - ')[1],
+                    color=color,
+                    tema_reunion=form.cleaned_data['tema_reunion'],
+                    observacion=form.cleaned_data['observacion'],
+                    url=reunion.id,
+                    caso_juridico=form.cleaned_data['caso_juridico']
+                    )
+            reunion.save()
+        return redirect('calendario')

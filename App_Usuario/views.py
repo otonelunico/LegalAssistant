@@ -107,7 +107,7 @@ class EditarUsuario(View):
         return render(request, self.template, locals())
 
 class Cambio(View):
-    def get(self, **kwargs):
+    def get(self, request, **kwargs):
         user = ExtraUser.objects.get(user_id=kwargs['id'])
         if kwargs['cambio']=='estado':
             user.estado_id = kwargs['select']

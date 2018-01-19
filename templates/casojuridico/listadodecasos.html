@@ -81,7 +81,7 @@
                 <h4 class="modal-title">Seleccione solicitud</h4>
               </div>
               <div class="modal-body">
-                  <select name="solicitud" id="select_solicitudes" class="form-control" style="width: 100%;">
+                  <select name="select_solicitudes" id="select_solicitudes" class="form-control" style="width: 100%;">
                   {% for foo in solicitudes %}
                       <option value="{{ foo.id }}" {% if foo.estado == "terminado" %}disabled{% endif %}>{{ foo.cliente.nombre }} -
                           {{ foo.cliente.rut }} -
@@ -94,7 +94,7 @@
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Cancelar</button>
-                <a href="" onclick="filter()" type="button" class="btn btn-primary">Continuar</a>
+                <button onclick="filter()" type="button" class="btn btn-primary">Continuar</button>
               </div>
             </div>
             <!-- /.modal-content -->
@@ -112,9 +112,9 @@
 
     function filter() {
 
-    var select = document.getElementById('solicitud').val();
-        //window.location.href = "/"+select;
-        alert(select)
+        var select = document.getElementById('select_solicitudes').value;
+        window.location.href = ' {% url 'nuevocasojuridico' 0 %}'.replace(/0/, select.toString());
+        //alert(select)
     }
     </script>
 

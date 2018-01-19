@@ -28,5 +28,5 @@
     border-bottom: 1px solid #fbfbfb;
 }
 .demo_calendario {
-    border-radius: 5px 5px 5px 5px; -moz-border-radius: 5px 5px 5px 5px; -webkit-border-radius: 5px 5px 5px 5px; background-color: #777777; color: white; font-size: smaller; margin-bottom: 10px; padding: 1px; padding-left: 5px;
+    border-radius: 5px 5px 5px 5px; -moz-border-radius: 5px 5px 5px 5px; -webkit-border-radius: 5px 5px 5px 5px; background-color: #3a87ad; color: white; font-size: smaller; margin-bottom: 10px; padding: 1px; padding-left: 5px;
 }

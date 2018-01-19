@@ -5,6 +5,7 @@
   <link rel="stylesheet" href="{% static 'fullcalendar/dist/fullcalendar.print.min.css' %}" media="print">
 
 
+  <link rel="stylesheet" href="{% static 'select2/dist/css/select2.min.css' %}">
   <link rel="stylesheet" href="{% static 'bootstrap-daterangepicker/daterangepicker.css' %}">
   <link rel="stylesheet" href="{% static 'bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css' %}">
 {% endblock ccs %}
@@ -22,7 +23,7 @@
                     <div class="col-lg-12 col-xs-12" align="center">
                         <h4>Agregar reunion</h4>
                     </div>
-                <form action="" method="post">
+                        <form action="" method="post">
                   {% csrf_token %}
                     <div class="col-lg-12 col-xs-12">
                         <div class="form-group">
@@ -67,6 +68,10 @@
                         <label for="id_caso_juridico">Asignar caso juridico:</label>
                         <select name="caso_juridico" id="id_caso_juridico" class="form-control">
                             <option value="0">Sin Caso</option>
+                            {% for foo in casos %}
+                            <option value="{{ foo.id }}">{{ foo.solicitud.cliente.nombre }} <b>{{ foo.solicitud.cliente.rut }}</b> -{{ foo.nombre_caso }} - {{ foo.n_rol_tibunal }}</option>
+                            {% endfor %}
+
                         </select>
                     </div>
                     <div class="col-lg-6 col-xs-12">
@@ -79,8 +84,6 @@
                         <input class="btn btn-default" type="submit" value="Agregar" style="margin-top: 40px">
                     </div>
               </form>
-
-
                   </div>
               </div>
             </div>
@@ -296,5 +299,11 @@ function add_color(color) {
     }
     document.getElementById('demo').innerHTML = document.getElementById("id_tema_reunion").value;
 }
+</script>
+<script src="{% static 'select2/dist/js/select2.full.min.js' %}"></script>
+    <script type="application/javascript">
+    $(document).ready(function() {
+        $('#id_caso_juridico').select2();
+    });
 </script>
 {% endblock js %}

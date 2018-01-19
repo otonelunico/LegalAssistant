@@ -53,6 +53,8 @@ class Gastos_User(models.Model):
 
 
 class Reunion(models.Model):
+    user = models.ForeignKey(ExtraUser, blank=True, on_delete=models.CASCADE)
+    estado = models.BooleanField(default=True)
     fecha_inicio = models.CharField(max_length=40, default=False)
     fecha_final = models.CharField(max_length=40, default=False)
     todo_Dia = models.BooleanField(default=False)
